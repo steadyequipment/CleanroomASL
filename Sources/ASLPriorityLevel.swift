@@ -6,8 +6,6 @@
 //  Copyright © 2015 Gilt Groupe. All rights reserved.
 //
 
-import Foundation
-
 /**
 The `ASLPriorityLevel` enum represents the documented `ASL_LEVEL_*` constant
 values.
