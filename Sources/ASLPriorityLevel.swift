@@ -13,41 +13,41 @@ values.
 public enum ASLPriorityLevel: Int32 // EnumerableEnum
 {
     /// Represents the `ASL_LEVEL_EMERG` constant.
-    case Emergency  = 0
+    case emergency  = 0
 
     /// Represents the `ASL_LEVEL_ALERT` constant.
-    case Alert      = 1
+    case alert      = 1
 
     /// Represents the `ASL_LEVEL_CRIT` constant.
-    case Critical   = 2
+    case critical   = 2
 
     /// Represents the `ASL_LEVEL_ERR` constant.
-    case Error      = 3
+    case error      = 3
 
     /// Represents the `ASL_LEVEL_WARNING` constant.
-    case Warning    = 4
+    case warning    = 4
 
     /// Represents the `ASL_LEVEL_NOTICE` constant.
-    case Notice     = 5
+    case notice     = 5
 
     /// Represents the `ASL_LEVEL_INFO` constant.
-    case Info       = 6
+    case info       = 6
 
     /// Represents the `ASL_LEVEL_DEBUG` constant.
-    case Debug      = 7
+    case debug      = 7
 
     /// Returns the `ASL_STRING_*` equivalent of the receiver.
     public var priorityString: String {
         get {
             switch self {
-            case Emergency: return "Emergency"  // ASL_STRING_EMERG
-            case Alert:     return "Alert"      // ASL_STRING_ALERT
-            case Critical:  return "Critical"   // ASL_STRING_CRIT
-            case Error:     return "Error"      // ASL_STRING_ERR
-            case Warning:   return "Warning"    // ASL_STRING_WARNING
-            case Notice:    return "Notice"     // ASL_STRING_NOTICE
-            case Info:      return "Info"       // ASL_STRING_INFO
-            case Debug:     return "Debug"      // ASL_STRING_DEBUG
+            case emergency: return "Emergency"  // ASL_STRING_EMERG
+            case alert:     return "Alert"      // ASL_STRING_ALERT
+            case critical:  return "Critical"   // ASL_STRING_CRIT
+            case error:     return "Error"      // ASL_STRING_ERR
+            case warning:   return "Warning"    // ASL_STRING_WARNING
+            case notice:    return "Notice"     // ASL_STRING_NOTICE
+            case info:      return "Info"       // ASL_STRING_INFO
+            case debug:     return "Debug"      // ASL_STRING_DEBUG
             }
         }
     }
@@ -72,14 +72,14 @@ public enum ASLPriorityLevel: Int32 // EnumerableEnum
         -> [ASLPriorityLevel]
     {
         return [
-            ASLPriorityLevel.Emergency,
-            ASLPriorityLevel.Alert,
-            ASLPriorityLevel.Critical,
-            ASLPriorityLevel.Error,
-            ASLPriorityLevel.Warning,
-            ASLPriorityLevel.Notice,
-            ASLPriorityLevel.Info,
-            ASLPriorityLevel.Debug
+            .emergency,
+            .alert,
+            .critical,
+            .error,
+            .warning,
+            .notice,
+            .info,
+            .debug
         ]
     }
 }
