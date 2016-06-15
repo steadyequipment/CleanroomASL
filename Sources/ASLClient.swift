@@ -111,7 +111,7 @@ public final class ASLClient
                 the behavior of `rawStdErr` will be used, overriding the
                 `.StdErr` behavior.
     */
-    public init(sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.Debug.filterMaskUpTo, useRawStdErr: Bool = true, options: Options = .NoRemote)
+    public init(sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.debug.filterMaskUpTo, useRawStdErr: Bool = true, options: Options = .NoRemote)
     {
         self.sender = sender ?? NSProcessInfo.processInfo().processName
         self.facility = facility ?? "com.gilt.CleanroomASL"
@@ -179,10 +179,10 @@ public final class ASLClient
     {
         let dispatch = dispatcher(currentQueue, synchronously: logSynchronously)
         dispatch {
-            if message[.ReadUID] == nil {
-                // the .ReadUID attribute determines the processes that can
+            if message[.readUID] == nil {
+                // the .readUID attribute determines the processes that can
                 // read this log entry. -1 means anyone can read.
-                message[.ReadUID] = "-1"
+                message[.readUID] = "-1"
             }
 
             asl_send(self.client, message.aslObject)
@@ -216,12 +216,12 @@ public final class ASLClient
             var keepGoing = true
             var record = asl_next(results)
             while record != nil && keepGoing {
-                if let message = record[.Message] {
-                    if let timestampStr = record[.Time] {
+                if let message = record[.message] {
+                    if let timestampStr = record[.time] {
                         if let timestampInt = Int(timestampStr) {
                             var timestamp = NSTimeInterval(timestampInt)
 
-                            if let nanoStr = record[.TimeNanoSec] {
+                            if let nanoStr = record[.timeNanoSec] {
                                 if let nanoInt = Int(nanoStr) {
                                     let nanos = Double(nanoInt) / Double(NSEC_PER_SEC)
                                     timestamp += nanos
@@ -230,8 +230,8 @@ public final class ASLClient
 
                             let logEntryTime = NSDate(timeIntervalSince1970: timestamp)
 
-                            var priority = ASLPriorityLevel.Notice
-                            if let logLevelStr = record[.Level],
+                            var priority = ASLPriorityLevel.notice
+                            if let logLevelStr = record[.level],
                                 let logLevelInt = Int(logLevelStr),
                                 let level = ASLPriorityLevel(rawValue: Int32(logLevelInt))
                             {

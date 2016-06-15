@@ -35,9 +35,9 @@ class CleanroomASLTests: XCTestCase
         }
 
         let query = ASLQueryObject()
-        query.setQueryKey(.Sender, value: sender, operation: .EqualTo, modifiers: .None)
-        query.setQueryKey(.Message, value: nil, operation: .KeyExists, modifiers: .None)
-        query.setQueryKey(.Time, value: Int(startTime.timeIntervalSince1970), operation: .GreaterThanOrEqualTo, modifiers: .None)
+        query.setQueryKey(.sender, value: sender, operation: .equalTo, modifiers: .none)
+        query.setQueryKey(.message, value: nil, operation: .keyExists, modifiers: .none)
+        query.setQueryKey(.time, value: Int(startTime.timeIntervalSince1970), operation: .greaterThanOrEqualTo, modifiers: .none)
 
         let signal = NSCondition()
 

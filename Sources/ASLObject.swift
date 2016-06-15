@@ -98,25 +98,25 @@ public class ASLObject
     public enum ASLType: UInt32
     {
         /** Equivalent to `ASL_TYPE_UNDEF`. */
-        case Undefined  = 0xffffffff
+        case undefined  = 0xffffffff
 
         /** Equivalent to `ASL_TYPE_MSG`. */
-        case Message    = 0
+        case message    = 0
 
         /** Equivalent to `ASL_TYPE_QUERY`. */
-        case Query      = 1
+        case query      = 1
 
         /** Equivalent to `ASL_TYPE_LIST`. */
-        case List       = 2
+        case list       = 2
 
         /** Equivalent to `ASL_TYPE_FILE`. */
-        case File       = 3
+        case file       = 3
 
         /** Equivalent to `ASL_TYPE_STORE`. */
-        case Store      = 4
+        case store      = 4
 
         /** Equivalent to `ASL_TYPE_CLIENT`. */
-        case Client     = 5
+        case client     = 5
 
         /**
         Creates a new `asl_object_t` for the `ASL_TYPE` represented by
@@ -213,7 +213,7 @@ public final class ASLMessageObject: ASLObject
     */
     public init()
     {
-        super.init(type: .Message)
+        super.init(type: .message)
     }
 
     /**
@@ -227,9 +227,9 @@ public final class ASLMessageObject: ASLObject
     */
     public init(priorityLevel: ASLPriorityLevel, message: String)
     {
-        super.init(type: .Message)
-        self[.Level] = priorityLevel.priorityString
-        self[.Message] = message
+        super.init(type: .message)
+        self[.level] = priorityLevel.priorityString
+        self[.message] = message
     }
 }
 
@@ -249,36 +249,36 @@ public final class ASLQueryObject: ASLObject
         /** Specifies that the query should match records whose value for the
         given key is equal to the one provided. Equivalent to 
         `ASL_QUERY_OP_EQUAL`. */
-        case EqualTo                = 0x0001
+        case equalTo                = 0x0001
 
         /** Specifies that the query should match records whose value for the
         given key is greater than the one provided. Equivalent to
         `ASL_QUERY_OP_GREATER`. */
-        case GreaterThan            = 0x0002
+        case greaterThan            = 0x0002
 
         /** Specifies that the query should match records whose value for the
         given key is greater than or equal to the one provided. Equivalent to
         `ASL_QUERY_OP_GREATER_EQUAL`. */
-        case GreaterThanOrEqualTo   = 0x0003
+        case greaterThanOrEqualTo   = 0x0003
 
         /** Specifies that the query should match records whose value for the
         given key is less than the one provided. Equivalent to
         `ASL_QUERY_OP_LESS`. */
-        case LessThan               = 0x0004
+        case lessThan               = 0x0004
 
         /** Specifies that the query should match records whose value for the
         given key is less than or equal to the one provided. Equivalent to
         `ASL_QUERY_OP_LESS_EQUAL`. */
-        case LessThanOrEqualTo      = 0x0005
+        case lessThanOrEqualTo      = 0x0005
 
         /** Specifies that the query should match records whose value for the
         given key is not equal to the one provided. Equivalent to
         `ASL_QUERY_OP_NOT_EQUAL`. */
-        case NotEqual               = 0x0006
+        case notEqual               = 0x0006
 
         /** Specifies that the query should match records having values for the
         given key. Equivalent to `ASL_QUERY_OP_TRUE`. */
-        case KeyExists              = 0x0007
+        case keyExists              = 0x0007
     }
 
     /**
@@ -302,38 +302,38 @@ public final class ASLQueryObject: ASLObject
 
         /** An `ASLQueryObject.OperationModifiers` value wherein none of the
         bit flags are set. */
-        public static let None = OperationModifiers(rawValue: 0)
+        public static let none = OperationModifiers(rawValue: 0)
 
         /** Specifies that the query operation should perform case-insensitive
         matching. Equivalent to `ASL_QUERY_OP_CASEFOLD`. */
-        public static let CaseInsensitive = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_CASEFOLD))
+        public static let caseInsensitive = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_CASEFOLD))
 
         /** Specifies that the query operation will attempt to match the search
         value against the beginning of each record's value for the given key.
         Equivalent to `ASL_QUERY_OP_PREFIX`. */
-        public static let MatchPrefix = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_PREFIX))
+        public static let matchPrefix = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_PREFIX))
 
         /** Specifies that the query operation will attempt to match the search
         value against the end of each record's value for the given key. 
         Equivalent to `ASL_QUERY_OP_SUFFIX`. */
-        public static let MatchSuffix = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_SUFFIX))
+        public static let matchSuffix = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_SUFFIX))
 
         /** Specifies that the query operation will attempt to find the search
         value within each record's value for the given key. Equivalent to
         `ASL_QUERY_OP_SUBSTRING`. */
-        public static let MatchSubstring = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_SUBSTRING))
+        public static let matchSubstring = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_SUBSTRING))
 
         /** Specifies that the query operation will perform numeric instead of
         text comparison. The query operation will interpret the search value
         and each record value as integers before performing the comparison
         operation. Equivalent to `ASL_QUERY_OP_NUMERIC`. */
-        public static let MatchNumeric = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_NUMERIC))
+        public static let matchNumeric = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_NUMERIC))
 
         /** Specifies that the query operation will perform regular expression
         matching. The query operation will interpret the search value as a
         regular expression that will be applied against the each record's
         value for the given key. Equivalent to `ASL_QUERY_OP_REGEX`. */
-        public static let MatchRegex = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_REGEX))
+        public static let matchRegex = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_REGEX))
     }
 
     /**
@@ -384,7 +384,7 @@ public final class ASLQueryObject: ASLObject
     */
     public init()
     {
-        super.init(type: .Query)
+        super.init(type: .query)
     }
 
     /**
@@ -431,6 +431,6 @@ public final class ASLQueryObject: ASLObject
     */
     public func setQueryKey(key: ASLAttributeKey, value: Int, operation: Operation, modifiers: OperationModifiers)
     {
-        asl_set_query(aslObject, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!, String(value).cStringUsingEncoding(NSUTF8StringEncoding)!, operation.rawValue | modifiers.rawValue | OperationModifiers.MatchNumeric.rawValue)
+        asl_set_query(aslObject, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!, String(value).cStringUsingEncoding(NSUTF8StringEncoding)!, operation.rawValue | modifiers.rawValue | OperationModifiers.matchNumeric.rawValue)
     }
 }
