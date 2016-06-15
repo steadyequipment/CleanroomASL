@@ -30,18 +30,17 @@ public extension asl_object_t
         -> String?
     {
         get {
-            let value = asl_get(self, key.rawValue)
-            if value != nil {
-                return String.fromCString(value)
+            guard let value = asl_get(self, key.rawValue) else {
+                return nil
             }
-            return nil
+            return String(cString: value)
         }
 
         set {
             if let value = newValue {
-                asl_set(self, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!, value)
+                asl_set(self, key.rawValue.cString(using: String.Encoding.utf8)!, value)
             } else {
-                asl_unset(self, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!)
+                asl_unset(self, key.rawValue.cString(using: String.Encoding.utf8)!)
             }
         }
     }
@@ -58,11 +57,10 @@ public extension asl_object_t
     public subscript(index: UInt32)
         -> String?
     {
-        let value = asl_key(self, index)
-        if value != nil {
-            return String.fromCString(value)
+        guard let value = asl_key(self, index) else {
+            return nil
         }
-        return nil
+        return String(cString: value)
     }
 
     /**
@@ -286,7 +284,7 @@ public final class ASLQueryObject: ASLObject
     These are bit-flag values that can be combined and otherwise manipulated 
     with bitwise operators.
     */
-    public struct OperationModifiers: OptionSetType
+    public struct OperationModifiers: OptionSet
     {
         /** The raw `UInt32` value representing the receiver's bit flags. */
         public let rawValue: UInt32
@@ -376,7 +374,7 @@ public final class ASLQueryObject: ASLObject
         public let message: String
 
         /** The system time when the log message was recorded. */
-        public let timestamp: NSDate
+        public let timestamp: Date
     }
 
     /**
@@ -404,10 +402,10 @@ public final class ASLQueryObject: ASLObject
     - parameter modifiers: The `OperationModifiers` bit flags that modify the
                 behavior of the search operation.
     */
-    public func setQueryKey(key: ASLAttributeKey, value: String?, operation: Operation, modifiers: OperationModifiers)
+    public func setQueryKey(_ key: ASLAttributeKey, value: String?, operation: Operation, modifiers: OperationModifiers)
     {
-        let value = (value ?? "").cStringUsingEncoding(NSUTF8StringEncoding)!
-        asl_set_query(aslObject, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!, value, operation.rawValue | modifiers.rawValue)
+        let value = (value ?? "").cString(using: String.Encoding.utf8)!
+        asl_set_query(aslObject, key.rawValue.cString(using: String.Encoding.utf8)!, value, operation.rawValue | modifiers.rawValue)
     }
 
     /**
@@ -429,8 +427,8 @@ public final class ASLQueryObject: ASLObject
                 variant automatically causes the `.MatchNumeric` bit flag to
                 be set.
     */
-    public func setQueryKey(key: ASLAttributeKey, value: Int, operation: Operation, modifiers: OperationModifiers)
+    public func setQueryKey(_ key: ASLAttributeKey, value: Int, operation: Operation, modifiers: OperationModifiers)
     {
-        asl_set_query(aslObject, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!, String(value).cStringUsingEncoding(NSUTF8StringEncoding)!, operation.rawValue | modifiers.rawValue | OperationModifiers.matchNumeric.rawValue)
+        asl_set_query(aslObject, key.rawValue.cString(using: String.Encoding.utf8)!, String(value).cString(using: String.Encoding.utf8)!, operation.rawValue | modifiers.rawValue | OperationModifiers.matchNumeric.rawValue)
     }
 }

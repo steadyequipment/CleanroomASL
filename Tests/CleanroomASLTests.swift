@@ -13,18 +13,18 @@ class CleanroomASLTests: XCTestCase
 {
     func testLogging()
     {
-        let startTime = NSDate()
+        let startTime = Date()
 
         let sender = "com.gilt.cleanroom.tests.ASL"
         let client = ASLClient(sender: sender)
 
-        func testMessageAtPriorityLevel(priorityLevel: ASLPriorityLevel)
+        func testMessageAtPriorityLevel(_ priorityLevel: ASLPriorityLevel)
             -> String
         {
             return "Logging a test message with \(priorityLevel.priorityString) priority (#\(priorityLevel.rawValue))"
         }
 
-        func writeTestMessageAtPriorityLevel(priorityLevel: ASLPriorityLevel)
+        func writeTestMessageAtPriorityLevel(_ priorityLevel: ASLPriorityLevel)
         {
             let msg = ASLMessageObject(priorityLevel: priorityLevel, message: testMessageAtPriorityLevel(priorityLevel))
             client.log(msg, logSynchronously: true)
@@ -39,10 +39,10 @@ class CleanroomASLTests: XCTestCase
         query.setQueryKey(.message, value: nil, operation: .keyExists, modifiers: .none)
         query.setQueryKey(.time, value: Int(startTime.timeIntervalSince1970), operation: .greaterThanOrEqualTo, modifiers: .none)
 
-        let signal = NSCondition()
+        let signal = Condition()
 
         signal.lock()
-        signal.waitUntilDate(NSDate(timeIntervalSinceNow: 1))
+        signal.wait(until: Date(timeIntervalSinceNow: 1))
         signal.unlock()
 
         var gotFinalResult = false

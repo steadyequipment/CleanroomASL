@@ -28,7 +28,7 @@ public final class ASLClient
     the behavior of an `ASLClient`. These are bit-flag values that can be
     combined and otherwise manipulated with bitwise operators.
     */
-    public struct Options: OptionSetType
+    public struct Options: OptionSet
     {
         /// The raw representation of the receiving `ASLClient.Options` value.
         public let rawValue: UInt32
@@ -77,13 +77,13 @@ public final class ASLClient
     /// allow low-level ASL operations not supported by `ASLClient` to be
     /// performed using the underlying `aslclient`. This queue must be used for
     /// all ASL operations using the receiver's `client` property.
-    public let queue: dispatch_queue_t
+    public let queue: DispatchQueue
 
     /// Determines whether the receiver's connection to the ASL is open.
     public var isOpen: Bool { return client != nil }
 
     /// The `aslclient` associated with the receiver.
-    public let client: aslclient
+    public let client: aslclient?
 
     /**
     Initializes a new `ASLClient` instance.
@@ -113,12 +113,12 @@ public final class ASLClient
     */
     public init(sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.debug.filterMaskUpTo, useRawStdErr: Bool = true, options: Options = .NoRemote)
     {
-        self.sender = sender ?? NSProcessInfo.processInfo().processName
+        self.sender = sender ?? ProcessInfo.processInfo().processName
         self.facility = facility ?? "com.gilt.CleanroomASL"
         self.filterMask = filterMask
         self.useRawStdErr = useRawStdErr
         self.options = options
-        self.queue = dispatch_queue_create("ASLClient", DISPATCH_QUEUE_SERIAL)
+        self.queue = DispatchQueue(label: "ASLClient", attributes: .serial)
 
         var options = self.options.rawValue
         if self.useRawStdErr {
@@ -138,15 +138,16 @@ public final class ASLClient
         asl_close(client)
     }
 
-    private func dispatcher(currentQueue: dispatch_queue_t? = nil, synchronously: Bool = false) -> (dispatch_block_t) -> Void
+    private func dispatcher(_ currentQueue: DispatchQueue? = nil, synchronously: Bool = false)
+        -> (() -> Void) -> Void
     {
-        let dispatcher: (dispatch_block_t) -> Void = { [queue] block in
+        let dispatcher: (() -> Void) -> Void = { [queue] block in
             let shouldDispatch = currentQueue == nil || !queue.isEqual(currentQueue!)
             if shouldDispatch {
                 if synchronously {
-                    return dispatch_sync(queue, block)
+                    return queue.sync(execute: block)
                 } else {
-                    return dispatch_async(queue, block)
+                    return queue.async(execute: block)
                 }
             }
             else {
@@ -175,7 +176,7 @@ public final class ASLClient
                 uses the receiver's queue to perform operations related to
                 logging.
     */
-    public func log(message: ASLMessageObject, logSynchronously: Bool = false, currentQueue: dispatch_queue_t? = nil)
+    public func log(_ message: ASLMessageObject, logSynchronously: Bool = false, currentQueue: DispatchQueue? = nil)
     {
         let dispatch = dispatcher(currentQueue, synchronously: logSynchronously)
         dispatch {
@@ -207,7 +208,7 @@ public final class ASLClient
                 entry. Make no assumptions about which thread will be calling the
                 function.
     */
-    public func search(query: ASLQueryObject, callback: ASLQueryObject.ResultCallback)
+    public func search(_ query: ASLQueryObject, callback: ASLQueryObject.ResultCallback)
     {
         let dispatch = dispatcher()
         dispatch {
@@ -216,22 +217,22 @@ public final class ASLClient
             var keepGoing = true
             var record = asl_next(results)
             while record != nil && keepGoing {
-                if let message = record[.message] {
-                    if let timestampStr = record[.time] {
+                if let message = record![.message] {
+                    if let timestampStr = record![.time] {
                         if let timestampInt = Int(timestampStr) {
-                            var timestamp = NSTimeInterval(timestampInt)
+                            var timestamp = TimeInterval(timestampInt)
 
-                            if let nanoStr = record[.timeNanoSec] {
+                            if let nanoStr = record![.timeNanoSec] {
                                 if let nanoInt = Int(nanoStr) {
                                     let nanos = Double(nanoInt) / Double(NSEC_PER_SEC)
                                     timestamp += nanos
                                 }
                             }
 
-                            let logEntryTime = NSDate(timeIntervalSince1970: timestamp)
+                            let logEntryTime = Date(timeIntervalSince1970: timestamp)
 
                             var priority = ASLPriorityLevel.notice
-                            if let logLevelStr = record[.level],
+                            if let logLevelStr = record![.level],
                                 let logLevelInt = Int(logLevelStr),
                                 let level = ASLPriorityLevel(rawValue: Int32(logLevelInt))
                             {
@@ -247,7 +248,7 @@ public final class ASLClient
             }
 
             if keepGoing {
-                callback(nil)
+                _ = callback(nil)
             }
 
             asl_release(results)
