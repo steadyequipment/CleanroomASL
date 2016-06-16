@@ -43,16 +43,16 @@ public final class ASLClient
         public init(rawValue: UInt32) { self.rawValue = rawValue }
 
         /// An `ASLClient.Options` value wherein none of the bit flags are set.
-        public static let None      = Options(rawValue: 0)
+        public static let none      = Options(rawValue: 0)
 
         /// An `ASLClient.Options` value with the `ASL_OPT_STDERR` flag set.
-        public static let StdErr    = Options(rawValue: 0x00000001)
+        public static let stdErr    = Options(rawValue: 0x00000001)
 
         /// An `ASLClient.Options` value with the `ASL_OPT_NO_DELAY` flag set.
-        public static let NoDelay   = Options(rawValue: 0x00000002)
+        public static let noDelay   = Options(rawValue: 0x00000002)
 
         /// An `ASLClient.Options` value with the `ASL_OPT_NO_REMOTE` flag set.
-        public static let NoRemote  = Options(rawValue: 0x00000004)
+        public static let noRemote  = Options(rawValue: 0x00000004)
     }
 
     /// The string that will be used by ASL the *sender* of any log messages
@@ -111,7 +111,7 @@ public final class ASLClient
                 the behavior of `rawStdErr` will be used, overriding the
                 `.StdErr` behavior.
     */
-    public init(sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.debug.filterMaskUpTo, useRawStdErr: Bool = true, options: Options = .NoRemote)
+    public init(sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.debug.filterMaskUpTo, useRawStdErr: Bool = true, options: Options = .noRemote)
     {
         self.sender = sender ?? ProcessInfo.processInfo().processName
         self.facility = facility ?? "com.gilt.CleanroomASL"
@@ -122,7 +122,7 @@ public final class ASLClient
 
         var options = self.options.rawValue
         if self.useRawStdErr {
-            options &= ~Options.StdErr.rawValue
+            options &= ~Options.stdErr.rawValue
         }
 
         self.client = asl_open(self.sender, self.facility, options)
@@ -188,7 +188,7 @@ public final class ASLClient
 
             asl_send(self.client, message.aslObject)
 
-            if logSynchronously && (self.useRawStdErr || self.options.contains(.StdErr)) {
+            if logSynchronously && (self.useRawStdErr || self.options.contains(.stdErr)) {
                 // flush stderr to ensure the console is up-to-date if we hit a breakpoint
                 fflush(stderr)
             }
