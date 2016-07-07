@@ -113,7 +113,7 @@ public final class ASLClient
     */
     public init(sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.debug.filterMaskUpTo, useRawStdErr: Bool = true, options: Options = .noRemote)
     {
-        self.sender = sender ?? ProcessInfo.processInfo().processName
+        self.sender = sender ?? ProcessInfo.processInfo.processName
         self.facility = facility ?? "com.gilt.CleanroomASL"
         self.filterMask = filterMask
         self.useRawStdErr = useRawStdErr
