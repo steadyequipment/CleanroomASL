@@ -1,0 +1,9 @@
+language: objective-c
+osx_image: xcode8
+xcode_project: CleanroomASL.xcodeproj
+xcode_scheme:
+  - CleanroomASL-iOS
+  - CleanroomASL-OSX
+  - CleanroomASL-tvOS
+  - CleanroomASL-watchOS
+
