@@ -118,7 +118,7 @@ public final class ASLClient
         self.filterMask = filterMask
         self.useRawStdErr = useRawStdErr
         self.options = options
-        self.queue = DispatchQueue(label: "ASLClient", attributes: .serial)
+        self.queue = DispatchQueue(label: "ASLClient", attributes: [])
 
         var options = self.options.rawValue
         if self.useRawStdErr {
