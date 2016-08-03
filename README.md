@@ -9,6 +9,25 @@ CleanroomASL is designed as a thin wrapper around ASL’s native C API that make
 CleanroomASL is part of [the Cleanroom Project](https://github.com/gilt/Cleanroom) from [Gilt Tech](http://tech.gilt.com).
 
 
+### Swift compatibility
+
+**Important:** This is the `swift3` branch. It is **Swift 3.0 compliant** and therefore **requires Xcode 8.0** to compile.
+
+2 other branches are also available:
+
+ - The [`master`](https://github.com/emaloney/CleanroomASL) branch uses **Swift 2.2**, requiring Xcode 7.3
+ - The [`swift2.3`](https://github.com/emaloney/CleanroomASL/tree/swift2.3) branch uses **Swift 2.3**, requiring Xcode 8.0
+
+
+#### Current status
+
+Branch|Build status
+--------|------------------------
+[`master`](https://github.com/emaloney/CleanroomASL)|[![Build status: master branch](https://travis-ci.org/emaloney/CleanroomASL.svg?branch=master)](https://travis-ci.org/emaloney/CleanroomASL)
+[`swift2.3`](https://github.com/emaloney/CleanroomASL/tree/swift2.3)|[![Build status: swift2.3 branch](https://travis-ci.org/emaloney/CleanroomASL.svg?branch=swift2.3)](https://travis-ci.org/emaloney/CleanroomASL)
+[`swift3`](https://github.com/emaloney/CleanroomASL/tree/swift3)|[![Build status: swift3 branch](https://travis-ci.org/emaloney/CleanroomASL.svg?branch=swift3)](https://travis-ci.org/emaloney/CleanroomASL)
+
+
 #### Who It’s For
 
 If you need to read from your application’s log on the device, CleanroomASL is for you. CleanroomASL is also useful if you need low-level access to writing to the Apple System Log.
@@ -23,10 +42,6 @@ CleanroomLogger uses CleanroomASL under the hood, but provides a simpler API tha
 
 CleanroomLogger is also extensible, allowing you to multiplex log output to multiple destinations and to add your own logger implementations.
 
-
-### Swift 2.2 compatibility
-
-The `master` branch of this project is **Swift 2.2 compliant** and therefore **requires Xcode 7.3 or higher** to compile.
 
 ### License
 
