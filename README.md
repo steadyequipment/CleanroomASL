@@ -26,6 +26,8 @@ Branch|Build status
 [`master`](https://github.com/emaloney/CleanroomASL)|[![Build status: master branch](https://travis-ci.org/emaloney/CleanroomASL.svg?branch=master)](https://travis-ci.org/emaloney/CleanroomASL)
 [`swift2.3`](https://github.com/emaloney/CleanroomASL/tree/swift2.3)|[![Build status: swift2.3 branch](https://travis-ci.org/emaloney/CleanroomASL.svg?branch=swift2.3)](https://travis-ci.org/emaloney/CleanroomASL)
 [`swift3`](https://github.com/emaloney/CleanroomASL/tree/swift3)|[![Build status: swift3 branch](https://travis-ci.org/emaloney/CleanroomASL.svg?branch=swift3)](https://travis-ci.org/emaloney/CleanroomASL)
+
+
 #### Who It’s For
 
 If you need to read from your application’s log on the device, CleanroomASL is for you. CleanroomASL is also useful if you need low-level access to writing to the Apple System Log.
@@ -39,7 +41,6 @@ If you’d like to use a simple, high-level Swift API for logging within your iO
 CleanroomLogger uses CleanroomASL under the hood, but provides a simpler API that will be more familiar to developers who’ve used other logging systems such as CocoaLumberjack or log4j.
 
 CleanroomLogger is also extensible, allowing you to multiplex log output to multiple destinations and to add your own logger implementations.
-
 
 
 ### License
