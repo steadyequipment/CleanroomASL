@@ -40,14 +40,14 @@ public enum ASLPriorityLevel: Int32 // EnumerableEnum
     public var priorityString: String {
         get {
             switch self {
-            case emergency: return "Emergency"  // ASL_STRING_EMERG
-            case alert:     return "Alert"      // ASL_STRING_ALERT
-            case critical:  return "Critical"   // ASL_STRING_CRIT
-            case error:     return "Error"      // ASL_STRING_ERR
-            case warning:   return "Warning"    // ASL_STRING_WARNING
-            case notice:    return "Notice"     // ASL_STRING_NOTICE
-            case info:      return "Info"       // ASL_STRING_INFO
-            case debug:     return "Debug"      // ASL_STRING_DEBUG
+            case .emergency: return "Emergency"  // ASL_STRING_EMERG
+            case .alert:     return "Alert"      // ASL_STRING_ALERT
+            case .critical:  return "Critical"   // ASL_STRING_CRIT
+            case .error:     return "Error"      // ASL_STRING_ERR
+            case .warning:   return "Warning"    // ASL_STRING_WARNING
+            case .notice:    return "Notice"     // ASL_STRING_NOTICE
+            case .info:      return "Info"       // ASL_STRING_INFO
+            case .debug:     return "Debug"      // ASL_STRING_DEBUG
             }
         }
     }
