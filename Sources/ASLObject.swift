@@ -204,7 +204,7 @@ Represents an ASL message object.
 
 Message objects represent an `asl_object_t` having a type of `ASL_TYPE_MSG`.
 */
-public final class ASLMessageObject: ASLObject
+public class ASLMessageObject: ASLObject
 {
     /**
     Initializes an empty `ASLMessageObject`.
@@ -236,7 +236,7 @@ Represents an ASL query object.
 
 Message objects represent an `asl_object_t` having a type of `ASL_TYPE_QUERY`.
 */
-public final class ASLQueryObject: ASLObject
+public class ASLQueryObject: ASLObject
 {
     /**
     Represents an ASL query operation. Query operations are used for comparing

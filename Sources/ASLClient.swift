@@ -21,7 +21,7 @@ across threads, each `ASLClient` has an associated GCD serial queue used to
 ensure that the underlying ASL client connection is only ever used from a single
 thread.
 */
-public final class ASLClient
+public class ASLClient
 {
     /**
     Represents ASL client creation option values, which are used to determine
