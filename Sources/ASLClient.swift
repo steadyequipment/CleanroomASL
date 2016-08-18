@@ -139,9 +139,9 @@ public final class ASLClient
     }
 
     private func dispatcher(_ currentQueue: DispatchQueue? = nil, synchronously: Bool = false)
-        -> (() -> Void) -> Void
+        -> (@escaping () -> Void) -> Void
     {
-        let dispatcher: (() -> Void) -> Void = { [queue] block in
+        let dispatcher: (@escaping () -> Void) -> Void = { [queue] block in
             let shouldDispatch = currentQueue == nil || !queue.isEqual(currentQueue!)
             if shouldDispatch {
                 if synchronously {

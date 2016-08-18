@@ -146,7 +146,7 @@ public class ASLObject
     
     - parameter type: The `ASLType` that determines the
     */
-    private init(type: ASLType)
+    internal init(type: ASLType)
     {
         self.type = type
         self._aslObject = type.create()
