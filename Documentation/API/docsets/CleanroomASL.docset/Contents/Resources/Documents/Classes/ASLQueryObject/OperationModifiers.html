@@ -35,13 +35,28 @@
                 <a href="../../Classes/ASLClient.html">ASLClient</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Classes/ASLClient/Options.html">– Options</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Classes/ASLMessageObject.html">ASLMessageObject</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Classes/ASLObject.html">ASLObject</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Classes/ASLObject/ASLType.html">– ASLType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Classes/ASLQueryObject.html">ASLQueryObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/ASLQueryObject/Operation.html">– Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/ASLQueryObject/OperationModifiers.html">– OperationModifiers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/ASLQueryObject/ResultRecord.html">– ResultRecord</a>
               </li>
             </ul>
           </li>
@@ -135,7 +150,7 @@ with bitwise operators.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes a new <code><a href="../../Classes/ASLQueryObject/OperationModifiers.html">ASLQueryObject.OperationModifiers</a></code> value with the
+                        <p>Initializes a new <code>ASLQueryObject.OperationModifiers</code> value with the
 specified raw value.</p>
 
                       </div>
@@ -143,7 +158,7 @@ specified raw value.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span> <span class="p">{</span> <span class="k">self</span><span class="o">.</span><span class="n">rawValue</span> <span class="o">=</span> <span class="n">rawValue</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -173,9 +188,9 @@ specified raw value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers4NoneS1_"></a>
-                    <a name="//apple_ref/swift/Variable/None" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers4NoneS1_">None</a>
+                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers4noneS1_"></a>
+                    <a name="//apple_ref/swift/Variable/none" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers4noneS1_">none</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -183,7 +198,7 @@ specified raw value.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An <code><a href="../../Classes/ASLQueryObject/OperationModifiers.html">ASLQueryObject.OperationModifiers</a></code> value wherein none of the
+                        <p>An <code>ASLQueryObject.OperationModifiers</code> value wherein none of the
 bit flags are set.</p>
 
                       </div>
@@ -191,7 +206,7 @@ bit flags are set.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">None</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">none</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -201,9 +216,9 @@ bit flags are set.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers15CaseInsensitiveS1_"></a>
-                    <a name="//apple_ref/swift/Variable/CaseInsensitive" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers15CaseInsensitiveS1_">CaseInsensitive</a>
+                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers15caseInsensitiveS1_"></a>
+                    <a name="//apple_ref/swift/Variable/caseInsensitive" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers15caseInsensitiveS1_">caseInsensitive</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -219,7 +234,7 @@ matching. Equivalent to <code>ASL_QUERY_OP_CASEFOLD</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">CaseInsensitive</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_CASEFOLD</span><span class="p">))</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">caseInsensitive</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_CASEFOLD</span><span class="p">))</span></code></pre>
 
                         </div>
                       </div>
@@ -229,9 +244,9 @@ matching. Equivalent to <code>ASL_QUERY_OP_CASEFOLD</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers11MatchPrefixS1_"></a>
-                    <a name="//apple_ref/swift/Variable/MatchPrefix" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers11MatchPrefixS1_">MatchPrefix</a>
+                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers11matchPrefixS1_"></a>
+                    <a name="//apple_ref/swift/Variable/matchPrefix" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers11matchPrefixS1_">matchPrefix</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -248,7 +263,7 @@ Equivalent to <code>ASL_QUERY_OP_PREFIX</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MatchPrefix</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_PREFIX</span><span class="p">))</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">matchPrefix</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_PREFIX</span><span class="p">))</span></code></pre>
 
                         </div>
                       </div>
@@ -258,9 +273,9 @@ Equivalent to <code>ASL_QUERY_OP_PREFIX</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers11MatchSuffixS1_"></a>
-                    <a name="//apple_ref/swift/Variable/MatchSuffix" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers11MatchSuffixS1_">MatchSuffix</a>
+                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers11matchSuffixS1_"></a>
+                    <a name="//apple_ref/swift/Variable/matchSuffix" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers11matchSuffixS1_">matchSuffix</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -277,7 +292,7 @@ Equivalent to <code>ASL_QUERY_OP_SUFFIX</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MatchSuffix</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_SUFFIX</span><span class="p">))</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">matchSuffix</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_SUFFIX</span><span class="p">))</span></code></pre>
 
                         </div>
                       </div>
@@ -287,9 +302,9 @@ Equivalent to <code>ASL_QUERY_OP_SUFFIX</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers14MatchSubstringS1_"></a>
-                    <a name="//apple_ref/swift/Variable/MatchSubstring" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers14MatchSubstringS1_">MatchSubstring</a>
+                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers14matchSubstringS1_"></a>
+                    <a name="//apple_ref/swift/Variable/matchSubstring" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers14matchSubstringS1_">matchSubstring</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -306,7 +321,7 @@ value within each record&rsquo;s value for the given key. Equivalent to
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MatchSubstring</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_SUBSTRING</span><span class="p">))</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">matchSubstring</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_SUBSTRING</span><span class="p">))</span></code></pre>
 
                         </div>
                       </div>
@@ -316,9 +331,9 @@ value within each record&rsquo;s value for the given key. Equivalent to
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers12MatchNumericS1_"></a>
-                    <a name="//apple_ref/swift/Variable/MatchNumeric" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers12MatchNumericS1_">MatchNumeric</a>
+                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers12matchNumericS1_"></a>
+                    <a name="//apple_ref/swift/Variable/matchNumeric" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers12matchNumericS1_">matchNumeric</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -336,7 +351,7 @@ operation. Equivalent to <code>ASL_QUERY_OP_NUMERIC</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MatchNumeric</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_NUMERIC</span><span class="p">))</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">matchNumeric</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_NUMERIC</span><span class="p">))</span></code></pre>
 
                         </div>
                       </div>
@@ -346,9 +361,9 @@ operation. Equivalent to <code>ASL_QUERY_OP_NUMERIC</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers10MatchRegexS1_"></a>
-                    <a name="//apple_ref/swift/Variable/MatchRegex" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers10MatchRegexS1_">MatchRegex</a>
+                    <a name="/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers10matchRegexS1_"></a>
+                    <a name="//apple_ref/swift/Variable/matchRegex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvVC12CleanroomASL14ASLQueryObject18OperationModifiers10matchRegexS1_">matchRegex</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -366,7 +381,7 @@ value for the given key. Equivalent to <code>ASL_QUERY_OP_REGEX</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MatchRegex</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_REGEX</span><span class="p">))</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">matchRegex</span> <span class="o">=</span> <span class="kt">OperationModifiers</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">(</span><span class="kt">ASL_QUERY_OP_REGEX</span><span class="p">))</span></code></pre>
 
                         </div>
                       </div>
@@ -379,7 +394,7 @@ value for the given key. Equivalent to <code>ASL_QUERY_OP_REGEX</code>.</p>
         </section>
         <section id="footer">
           <p>© 2015-2016 <a class="link" href="http://tech.gilt.com/" target="_blank" rel="external">Gilt Groupe</a></p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

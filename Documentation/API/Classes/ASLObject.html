@@ -35,13 +35,28 @@
                 <a href="../Classes/ASLClient.html">ASLClient</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/ASLClient/Options.html">– Options</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/ASLMessageObject.html">ASLMessageObject</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ASLObject.html">ASLObject</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/ASLObject/ASLType.html">– ASLType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/ASLQueryObject.html">ASLQueryObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ASLQueryObject/Operation.html">– Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ASLQueryObject/OperationModifiers.html">– OperationModifiers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ASLQueryObject/ResultRecord.html">– ResultRecord</a>
               </li>
             </ul>
           </li>
@@ -88,11 +103,11 @@
                 </div>
               </div>
             <p>Instances of the <code>ASLObject</code> class provide type-safe to an underlying
-<code><a href="../Extensions/asl_object_t.html">asl_object_t</a></code> of a given <code>ASL_TYPE</code>.</p>
+<code>asl_object_t</code> of a given <code>ASL_TYPE</code>.</p>
 
 <p>Typically, you would interact one of the <code>ASLObject</code> subclasses: 
 <code><a href="../Classes/ASLMessageObject.html">ASLMessageObject</a></code> or <code><a href="../Classes/ASLQueryObject.html">ASLQueryObject</a></code>. However, you can also use low-level
-ASL functionality using the <code><a href="../Extensions/asl_object_t.html">asl_object_t</a></code> exposed by the <code>aslObject</code>
+ASL functionality using the <code>asl_object_t</code> exposed by the <code>aslObject</code>
 property.</p>
 
 <p><strong>Note:</strong> <code>ASLObject</code> subclass implementations are only provided for
@@ -152,7 +167,7 @@ notation.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">ASLAttributeKey</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt"><a href="../Enums/ASLAttributeKey.html">ASLAttributeKey</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -257,7 +272,7 @@ index.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">ASLType</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLObject/ASLType.html">ASLType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -277,7 +292,7 @@ index.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the underlying <code><a href="../Extensions/asl_object_t.html">asl_object_t</a></code> represented by the receiver. 
+                        <p>Returns the underlying <code>asl_object_t</code> represented by the receiver. 
 You can use this for direct, low-level access to the Apple System Log
 API.</p>
 
@@ -286,7 +301,7 @@ API.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">aslObject</span><span class="p">:</span> <span class="k">as</span><span class="n">l_object_t</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">aslObject</span><span class="p">:</span> <span class="n">asl_object_t</span></code></pre>
 
                         </div>
                       </div>
@@ -332,7 +347,7 @@ API.</p>
         </section>
         <section id="footer">
           <p>© 2015-2016 <a class="link" href="http://tech.gilt.com/" target="_blank" rel="external">Gilt Groupe</a></p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

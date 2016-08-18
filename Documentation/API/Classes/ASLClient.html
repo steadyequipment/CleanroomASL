@@ -35,13 +35,28 @@
                 <a href="../Classes/ASLClient.html">ASLClient</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/ASLClient/Options.html">– Options</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/ASLMessageObject.html">ASLMessageObject</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ASLObject.html">ASLObject</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/ASLObject/ASLType.html">– ASLType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/ASLQueryObject.html">ASLQueryObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ASLQueryObject/Operation.html">– Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ASLQueryObject/OperationModifiers.html">– OperationModifiers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ASLQueryObject/ResultRecord.html">– ResultRecord</a>
               </li>
             </ul>
           </li>
@@ -260,7 +275,7 @@ standard error stream; <code>false</code> otherwise.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">Options</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLClient/Options.html">Options</a></span></code></pre>
 
                         </div>
                       </div>
@@ -281,7 +296,7 @@ standard error stream; <code>false</code> otherwise.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The GCD queue used to serialize log operations. This is exposed to
-allow low-level ASL operations not supported by <code><a href="../Classes/ASLClient.html">ASLClient</a></code> to be
+allow low-level ASL operations not supported by <code>ASLClient</code> to be
 performed using the underlying <code>aslclient</code>. This queue must be used for
 all ASL operations using the receiver&rsquo;s <code><a href="../Classes/ASLClient.html#/s:vC12CleanroomASL9ASLClient6clientVs14COpaquePointer">client</a></code> property.</p>
 
@@ -317,7 +332,7 @@ all ASL operations using the receiver&rsquo;s <code><a href="../Classes/ASLClien
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isOpen</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">return</span> <span class="n">client</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isOpen</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -344,7 +359,7 @@ all ASL operations using the receiver&rsquo;s <code><a href="../Classes/ASLClien
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">client</span><span class="p">:</span> <span class="k">as</span><span class="n">lclient</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">client</span><span class="p">:</span> <span class="n">aslclient</span></code></pre>
 
                         </div>
                       </div>
@@ -364,14 +379,14 @@ all ASL operations using the receiver&rsquo;s <code><a href="../Classes/ASLClien
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes a new <code><a href="../Classes/ASLClient.html">ASLClient</a></code> instance.</p>
+                        <p>Initializes a new <code>ASLClient</code> instance.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">facility</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">filterMask</span><span class="p">:</span> <span class="kt">Int32</span> <span class="o">=</span> <span class="kt">ASLPriorityLevel</span><span class="o">.</span><span class="kt">Debug</span><span class="o">.</span><span class="n">filterMaskUpTo</span><span class="p">,</span> <span class="nv">useRawStdErr</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">Options</span> <span class="o">=</span> <span class="o">.</span><span class="kt">NoRemote</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">facility</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">filterMask</span><span class="p">:</span> <span class="kt">Int32</span> <span class="o">=</span> <span class="kt"><a href="../Enums/ASLPriorityLevel.html">ASLPriorityLevel</a></span><span class="o">.</span><span class="n">debug</span><span class="o">.</span><span class="n">filterMaskUpTo</span><span class="p">,</span> <span class="nv">useRawStdErr</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLClient/Options.html">Options</a></span> <span class="o">=</span> <span class="o">.</span><span class="kt">NoRemote</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -470,7 +485,7 @@ all ASL operations using the receiver&rsquo;s <code><a href="../Classes/ASLClien
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="kt">ASLMessageObject</span><span class="p">,</span> <span class="nv">logSynchronously</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">currentQueue</span><span class="p">:</span> <span class="n">dispatch_queue_t</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLMessageObject.html">ASLMessageObject</a></span><span class="p">,</span> <span class="nv">logSynchronously</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">currentQueue</span><span class="p">:</span> <span class="n">dispatch_queue_t</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -547,7 +562,7 @@ the callback.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="nv">query</span><span class="p">:</span> <span class="kt">ASLQueryObject</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kt">ASLQueryObject</span><span class="o">.</span><span class="kt">ResultCallback</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="nv">query</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLQueryObject.html">ASLQueryObject</a></span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLQueryObject.html">ASLQueryObject</a></span><span class="o">.</span><span class="kt">ResultCallback</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -593,7 +608,7 @@ the callback.</p>
         </section>
         <section id="footer">
           <p>© 2015-2016 <a class="link" href="http://tech.gilt.com/" target="_blank" rel="external">Gilt Groupe</a></p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
