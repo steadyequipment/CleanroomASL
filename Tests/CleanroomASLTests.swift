@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Foundation
 import CleanroomASL
 
 class CleanroomASLTests: XCTestCase
@@ -39,7 +40,7 @@ class CleanroomASLTests: XCTestCase
         query.setQueryKey(.message, value: nil, operation: .keyExists, modifiers: .none)
         query.setQueryKey(.time, value: Int(startTime.timeIntervalSince1970), operation: .greaterThanOrEqualTo, modifiers: .none)
 
-        let signal = Condition()
+        let signal = NSCondition()
 
         signal.lock()
         signal.wait(until: Date(timeIntervalSinceNow: 1))
