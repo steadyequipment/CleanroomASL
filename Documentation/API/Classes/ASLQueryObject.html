@@ -83,10 +83,13 @@
             <a href="../Subscripts.html">Subscripts</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFVs6UInt32GSqSS_">subscript(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFVs6UInt32GSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFSSGSqSS_">subscript(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
               </li>
             </ul>
           </li>
@@ -104,7 +107,7 @@
               </div>
             <p>Represents an ASL query object.</p>
 
-<p>Message objects represent an <code>asl_object_t</code> having a type of <code>ASL_TYPE_QUERY</code>.</p>
+<p>Query objects represent an <code>asl_object_t</code> having a type of <code>ASL_TYPE_QUERY</code>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -166,7 +169,7 @@ passed instead of an actual record.</p>
 <code><a href="../Classes/ASLQueryObject/ResultRecord.html">ResultRecord</a></code>s are desired.</p>
 
 <p>The callback can short-circuit delivery of additional results by returning
-<code>false</code> at any time. Once the callback returns <code>false</code>, it will not be 
+<code>false</code> at any time. Once the callback returns <code>false</code>, it will not be
 called again for the givens query.</p>
 
                       </div>
@@ -195,7 +198,7 @@ called again for the givens query.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Represents modifiers used to change the behavior of a query operation.
-These are bit-flag values that can be combined and otherwise manipulated 
+These are bit-flag values that can be combined and otherwise manipulated
 with bitwise operators.</p>
 
                         <a href="../Classes/ASLQueryObject/OperationModifiers.html" class="slightly-smaller">See more</a>
@@ -360,6 +363,95 @@ according to the query key(s) that have been set on the receiver.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:FC12CleanroomASL14ASLQueryObject8setQueryFT13attributeNameSS5valueGSqSS_9operationOS0_9Operation9modifiersVS0_18OperationModifiers_T_"></a>
+                    <a name="//apple_ref/swift/Method/setQuery(attributeName:value:operation:modifiers:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12CleanroomASL14ASLQueryObject8setQueryFT13attributeNameSS5valueGSqSS_9operationOS0_9Operation9modifiersVS0_18OperationModifiers_T_">setQuery(attributeName:value:operation:modifiers:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets a query operation for the given attribute name and string-based value.</p>
+
+<p>When a search query is executed, the result set will be constrained
+according to the query key(s) that have been set on the receiver.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setQuery</span><span class="p">(</span><span class="n">attributeName</span> <span class="nv">attributeName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">operation</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLQueryObject/Operation.html">Operation</a></span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLQueryObject/OperationModifiers.html">OperationModifiers</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>attributeName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the attribute whose value will be queried.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The string value to find.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies the query <code>Operation</code> to be performed. This governs how values will be matched by the search.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>modifiers</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>OperationModifiers</code> bit flags that modify the behavior of the search operation.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:FC12CleanroomASL14ASLQueryObject11setQueryKeyFTOS_15ASLAttributeKey5valueSi9operationOS0_9Operation9modifiersVS0_18OperationModifiers_T_"></a>
                     <a name="//apple_ref/swift/Method/setQueryKey(_:value:operation:modifiers:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FC12CleanroomASL14ASLQueryObject11setQueryKeyFTOS_15ASLAttributeKey5valueSi9operationOS0_9Operation9modifiersVS0_18OperationModifiers_T_">setQueryKey(_:value:operation:modifiers:)</a>
@@ -370,7 +462,7 @@ according to the query key(s) that have been set on the receiver.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Sets a query operation for the given key and string-based value.</p>
+                        <p>Sets a query operation for the given key and integer-based value.</p>
 
 <p>When a search query is executed, the result set will be constrained
 according to the query key(s) that have been set on the receiver.</p>
@@ -436,6 +528,96 @@ according to the query key(s) that have been set on the receiver.</p>
                               <td>
                                 <div>
                                   <p>The <code>OperationModifiers</code> bit flags that modify the behavior of the search operation. Note that using this method variant automatically causes the <code>.MatchNumeric</code> bit flag to be set.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12CleanroomASL14ASLQueryObject8setQueryFT13attributeNameSS5valueSi9operationOS0_9Operation9modifiersVS0_18OperationModifiers_T_"></a>
+                    <a name="//apple_ref/swift/Method/setQuery(attributeName:value:operation:modifiers:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12CleanroomASL14ASLQueryObject8setQueryFT13attributeNameSS5valueSi9operationOS0_9Operation9modifiersVS0_18OperationModifiers_T_">setQuery(attributeName:value:operation:modifiers:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets a query operation for the given attribute name and integer-based
+value.</p>
+
+<p>When a search query is executed, the result set will be constrained
+according to the query key(s) that have been set on the receiver.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setQuery</span><span class="p">(</span><span class="n">attributeName</span> <span class="nv">attributeName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLQueryObject/Operation.html">Operation</a></span><span class="p">,</span> <span class="nv">modifiers</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLQueryObject/OperationModifiers.html">OperationModifiers</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>attributeName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the attribute whose value will be queried.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The integer value to find.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies the query <code>Operation</code> to be performed. This governs how values will be matched by the search.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>modifiers</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>OperationModifiers</code> bit flags that modify the behavior of the search operation.</p>
 
                                 </div>
                               </td>

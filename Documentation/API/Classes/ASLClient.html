@@ -83,10 +83,13 @@
             <a href="../Subscripts.html">Subscripts</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFVs6UInt32GSqSS_">subscript(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFVs6UInt32GSqSS_">subscript(_:)</a>
+                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFSSGSqSS_">subscript(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
               </li>
             </ul>
           </li>
@@ -369,9 +372,37 @@ all ASL operations using the receiver&rsquo;s <code><a href="../Classes/ASLClien
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC12CleanroomASL9ASLClientcFT6senderGSqSS_8facilityGSqSS_10filterMaskVs5Int3212useRawStdErrSb7optionsVS0_7Options_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(sender:facility:filterMask:useRawStdErr:options:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC12CleanroomASL9ASLClientcFT6senderGSqSS_8facilityGSqSS_10filterMaskVs5Int3212useRawStdErrSb7optionsVS0_7Options_S0_">init(sender:facility:filterMask:useRawStdErr:options:)</a>
+                    <a name="/s:vC12CleanroomASL9ASLClient8filePathGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/filePath" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12CleanroomASL9ASLClient8filePathGSqSS_">filePath</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If the client was instantiated using an ASL message data store file, 
+this value contains the filesystem path of that file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">filePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12CleanroomASL9ASLClientcFT8filePathGSqSS_6senderGSqSS_8facilityGSqSS_10filterMaskVs5Int3212useRawStdErrSb18openFileForWritingSb7optionsVS0_7Options_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(filePath:sender:facility:filterMask:useRawStdErr:openFileForWriting:options:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12CleanroomASL9ASLClientcFT8filePathGSqSS_6senderGSqSS_8facilityGSqSS_10filterMaskVs5Int3212useRawStdErrSb18openFileForWritingSb7optionsVS0_7Options_S0_">init(filePath:sender:facility:filterMask:useRawStdErr:openFileForWriting:options:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -386,7 +417,7 @@ all ASL operations using the receiver&rsquo;s <code><a href="../Classes/ASLClien
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">facility</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">filterMask</span><span class="p">:</span> <span class="kt">Int32</span> <span class="o">=</span> <span class="kt"><a href="../Enums/ASLPriorityLevel.html">ASLPriorityLevel</a></span><span class="o">.</span><span class="n">debug</span><span class="o">.</span><span class="n">filterMaskUpTo</span><span class="p">,</span> <span class="nv">useRawStdErr</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLClient/Options.html">Options</a></span> <span class="o">=</span> <span class="o">.</span><span class="kt">NoRemote</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">filePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">facility</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">filterMask</span><span class="p">:</span> <span class="kt">Int32</span> <span class="o">=</span> <span class="kt"><a href="../Enums/ASLPriorityLevel.html">ASLPriorityLevel</a></span><span class="o">.</span><span class="n">debug</span><span class="o">.</span><span class="n">filterMaskUpTo</span><span class="p">,</span> <span class="nv">useRawStdErr</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">openFileForWriting</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASLClient/Options.html">Options</a></span> <span class="o">=</span> <span class="o">.</span><span class="kt">NoRemote</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -394,6 +425,19 @@ all ASL operations using the receiver&rsquo;s <code><a href="../Classes/ASLClien
                         <h4>Parameters</h4>
                         <table class="graybox">
                           <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filePath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The filesystem path of an ASL message data store file. If this parameter is provided and the file exists, the client can be used to query any existing entries and to log additional entries. If the file does not exist, an attempt will be made to create it.</p>
+
+                                </div>
+                              </td>
+                            </tr>
                             <tr>
                               <td>
                                 <code>
@@ -442,6 +486,19 @@ all ASL operations using the receiver&rsquo;s <code><a href="../Classes/ASLClien
                               <td>
                                 <div>
                                   <p>If <code>true</code>, messages sent through the <code>ASLClient</code> will be mirrored to standard error without modification. Note that this differs from the behavior of the <code>.StdErr</code> value for the <code>ASLClient.Options</code> parameter, which performs some escaping and may add additional text to the message.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>openFileForWriting</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If <code>filePath</code> is non-<code>nil</code>, this value determines whether the file will be opened for writing. If <code>true</code> and <code>filePath</code> doesn&rsquo;t exist, an attempt will be made to create a new message data store at that path. If <code>false</code>, it will only be possible to query the file.</p>
 
                                 </div>
                               </td>

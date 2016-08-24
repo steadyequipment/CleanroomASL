@@ -83,10 +83,13 @@
             <a href="../../Subscripts.html">Subscripts</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
+                <a href="../../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFVs6UInt32GSqSS_">subscript(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFVs6UInt32GSqSS_">subscript(_:)</a>
+                <a href="../../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFSSGSqSS_">subscript(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Subscripts.html#/s:iE12CleanroomASLVs14COpaquePointer9subscriptFOS_15ASLAttributeKeyGSqSS_">subscript(_:)</a>
               </li>
             </ul>
           </li>
@@ -103,7 +106,7 @@
                 </div>
               </div>
             <p>Represents modifiers used to change the behavior of a query operation.
-These are bit-flag values that can be combined and otherwise manipulated 
+These are bit-flag values that can be combined and otherwise manipulated
 with bitwise operators.</p>
 
           </section>
@@ -199,7 +202,7 @@ specified raw value.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>An <code>ASLQueryObject.OperationModifiers</code> value wherein none of the
-bit flags are set.</p>
+ bit flags are set.</p>
 
                       </div>
                       <div class="declaration">
@@ -227,7 +230,7 @@ bit flags are set.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Specifies that the query operation should perform case-insensitive
-matching. Equivalent to <code>ASL_QUERY_OP_CASEFOLD</code>.</p>
+ matching. Equivalent to <code>ASL_QUERY_OP_CASEFOLD</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -255,8 +258,8 @@ matching. Equivalent to <code>ASL_QUERY_OP_CASEFOLD</code>.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Specifies that the query operation will attempt to match the search
-value against the beginning of each record&rsquo;s value for the given key.
-Equivalent to <code>ASL_QUERY_OP_PREFIX</code>.</p>
+ value against the beginning of each record&rsquo;s value for the given key.
+ Equivalent to <code>ASL_QUERY_OP_PREFIX</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -284,8 +287,8 @@ Equivalent to <code>ASL_QUERY_OP_PREFIX</code>.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Specifies that the query operation will attempt to match the search
-value against the end of each record&rsquo;s value for the given key. 
-Equivalent to <code>ASL_QUERY_OP_SUFFIX</code>.</p>
+ value against the end of each record&rsquo;s value for the given key.
+ Equivalent to <code>ASL_QUERY_OP_SUFFIX</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -313,8 +316,8 @@ Equivalent to <code>ASL_QUERY_OP_SUFFIX</code>.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Specifies that the query operation will attempt to find the search
-value within each record&rsquo;s value for the given key. Equivalent to
-<code>ASL_QUERY_OP_SUBSTRING</code>.</p>
+ value within each record&rsquo;s value for the given key. Equivalent to
+ <code>ASL_QUERY_OP_SUBSTRING</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -342,9 +345,9 @@ value within each record&rsquo;s value for the given key. Equivalent to
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Specifies that the query operation will perform numeric instead of
-text comparison. The query operation will interpret the search value
-and each record value as integers before performing the comparison
-operation. Equivalent to <code>ASL_QUERY_OP_NUMERIC</code>.</p>
+ text comparison. The query operation will interpret the search value
+ and each record value as integers before performing the comparison
+ operation. Equivalent to <code>ASL_QUERY_OP_NUMERIC</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -372,9 +375,9 @@ operation. Equivalent to <code>ASL_QUERY_OP_NUMERIC</code>.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Specifies that the query operation will perform regular expression
-matching. The query operation will interpret the search value as a
-regular expression that will be applied against the each record&rsquo;s
-value for the given key. Equivalent to <code>ASL_QUERY_OP_REGEX</code>.</p>
+ matching. The query operation will interpret the search value as a
+ regular expression that will be applied against the each record&rsquo;s
+ value for the given key. Equivalent to <code>ASL_QUERY_OP_REGEX</code>.</p>
 
                       </div>
                       <div class="declaration">
