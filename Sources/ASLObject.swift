@@ -397,6 +397,9 @@ public class ASLQueryObject: ASLObject
 
         /** The system time when the log message was recorded. */
         public let timestamp: Date
+
+        /** Raw message attributes. */
+        public let attributes: [String: String]
     }
 
     /**
@@ -424,14 +427,36 @@ public class ASLQueryObject: ASLObject
      - parameter modifiers: The `OperationModifiers` bit flags that modify the
      behavior of the search operation.
     */
-    public func setQueryKey(_ key: ASLAttributeKey, value: String?, operation: Operation, modifiers: OperationModifiers)
+    public func setQuery(key: ASLAttributeKey, value: String?, operation: Operation, modifiers: OperationModifiers)
     {
-        let value = (value ?? "").cString(using: String.Encoding.utf8)!
-        asl_set_query(aslObject, key.rawValue.cString(using: String.Encoding.utf8)!, value, operation.rawValue | modifiers.rawValue)
+        setQuery(attributeName: key.rawValue, value: value, operation: operation, modifiers: modifiers)
     }
 
     /**
-     Sets a query operation for the given key and string-based value.
+     Sets a query operation for the given attribute name and string-based value.
+
+     When a search query is executed, the result set will be constrained
+     according to the query key(s) that have been set on the receiver.
+
+     - parameter attributeName: The name of the attribute whose value will
+     be queried.
+
+     - parameter value: The string value to find.
+
+     - parameter operation: Specifies the query `Operation` to be performed.
+     This governs how values will be matched by the search.
+
+     - parameter modifiers: The `OperationModifiers` bit flags that modify the
+     behavior of the search operation.
+     */
+    public func setQuery(attributeName: String, value: String?, operation: Operation, modifiers: OperationModifiers)
+    {
+        let value = (value ?? "").cString(using: .utf8)!
+        asl_set_query(aslObject, attributeName.cString(using: .utf8)!, value, operation.rawValue | modifiers.rawValue)
+    }
+
+    /**
+     Sets a query operation for the given key and integer-based value.
 
      When a search query is executed, the result set will be constrained
      according to the query key(s) that have been set on the receiver.
@@ -448,8 +473,31 @@ public class ASLQueryObject: ASLObject
      behavior of the search operation. Note that using this method variant
      automatically causes the `.MatchNumeric` bit flag to be set.
     */
-    public func setQueryKey(_ key: ASLAttributeKey, value: Int, operation: Operation, modifiers: OperationModifiers)
+    public func setQuery(key: ASLAttributeKey, value: Int, operation: Operation, modifiers: OperationModifiers)
     {
-        asl_set_query(aslObject, key.rawValue.cString(using: String.Encoding.utf8)!, String(value).cString(using: String.Encoding.utf8)!, operation.rawValue | modifiers.rawValue | OperationModifiers.matchNumeric.rawValue)
+        setQuery(attributeName: key.rawValue, value: value, operation: operation, modifiers: modifiers)
+    }
+
+    /**
+     Sets a query operation for the given attribute name and integer-based
+     value.
+
+     When a search query is executed, the result set will be constrained
+     according to the query key(s) that have been set on the receiver.
+
+     - parameter attributeName: The name of the attribute whose value will
+     be queried.
+
+     - parameter value: The integer value to find.
+
+     - parameter operation: Specifies the query `Operation` to be performed.
+     This governs how values will be matched by the search.
+
+     - parameter modifiers: The `OperationModifiers` bit flags that modify the
+     behavior of the search operation.
+     */
+    public func setQuery(attributeName: String, value: Int, operation: Operation, modifiers: OperationModifiers)
+    {
+        asl_set_query(aslObject, attributeName.cString(using: .utf8)!, String(value).cString(using: .utf8)!, operation.rawValue | modifiers.rawValue | OperationModifiers.matchNumeric.rawValue)
     }
 }
