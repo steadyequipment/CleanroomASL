@@ -85,8 +85,17 @@ public final class ASLClient
     /// The `aslclient` associated with the receiver.
     public let client: aslclient
 
+    /// If the client was instantiated using an ASL message data store file, 
+    /// this value contains the filesystem path of that file.
+    public let filePath: String?
+
     /**
      Initializes a new `ASLClient` instance.
+
+     - parameter filePath: The filesystem path of an ASL message data store 
+     file. If this parameter is provided and the file exists, the client
+     can be used to query any existing entries and to log additional entries.
+     If the file does not exist, an attempt will be made to create it.
 
      - parameter sender: Will be used as the `ASLAttributeKey` value for the
      `.Sender` key for all log messages sent to ASL. If `nil`, the name of the
@@ -101,16 +110,22 @@ public final class ASLClient
 
      - parameter useRawStdErr: If `true`, messages sent through the `ASLClient`
      will be mirrored to standard error without modification. Note that this
-     differs from the behavior of the `.StdErr` value for the 
+     differs from the behavior of the `.StdErr` value for the
      `ASLClient.Options` parameter, which performs some escaping and may add
      additional text to the message.
+
+     - parameter openFileForWriting: If `filePath` is non-`nil`, this value
+     determines whether the file will be opened for writing. If `true` and
+     `filePath` doesn't exist, an attempt will be made to create a new message
+     data store at that path. If `false`, it will only be possible to
+     query the file.
 
      - parameter options: An `ASLClient.Options` value specifying the client
      options to be used by this new client. Note that if the `.StdErr` value
      is passed and `rawStdErr` is also `true`, the behavior of `rawStdErr`
      will be used, overriding the `.StdErr` behavior.
      */
-    public init(sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.debug.filterMaskUpTo, useRawStdErr: Bool = true, options: Options = .NoRemote)
+    public init(filePath: String? = nil, sender: String? = nil, facility: String? = nil, filterMask: Int32 = ASLPriorityLevel.debug.filterMaskUpTo, useRawStdErr: Bool = true, openFileForWriting: Bool = false, options: Options = .NoRemote)
     {
         self.sender = sender ?? NSProcessInfo.processInfo().processName
         self.facility = facility ?? "com.gilt.CleanroomASL"
@@ -124,7 +139,14 @@ public final class ASLClient
             options &= ~Options.StdErr.rawValue
         }
 
-        self.client = asl_open(self.sender, self.facility, options)
+        if let filePath = filePath {
+            self.client = asl_open_path(filePath, openFileForWriting ? UInt32(ASL_OPT_OPEN_WRITE | ASL_OPT_CREATE_STORE) : 0)
+        }
+        else {
+            self.client = asl_open(self.sender, self.facility, options)
+        }
+
+        self.filePath = filePath
 
         asl_set_filter(self.client, self.filterMask)
 
@@ -181,6 +203,30 @@ public final class ASLClient
                 // the .readUID attribute determines the processes that can
                 // read this log entry. -1 means anyone can read.
                 message[.readUID] = "-1"
+            }
+
+            if self.filePath != nil {
+                // if we were instantiated using a file, the sender and
+                // facility weren't set via the usual call to asl_open();
+                // set these values manually (if they weren't already 
+                // provided within the message)
+                if message[.sender] == nil {
+                    message[.sender] = self.sender
+                }
+                if message[.facility] == nil {
+                    message[.facility] = self.facility
+                }
+
+                // also, when the client was opened with asl_open_path(), it
+                // seems that the ASL_KEY_TIME and ASL_KEY_TIME_NSEC attributes
+                // aren't set as they normally are as with asl_open()
+                if message[.time] == nil && message[.timeNanoSec] == nil {
+                    var time = timeval()
+                    if gettimeofday(&time, nil) == 0 {
+                        message[.time] = String(time.tv_sec)
+                        message[.timeNanoSec] = String(time.tv_usec * 1000)
+                    }
+                }
             }
 
             asl_send(self.client, message.aslObject)
