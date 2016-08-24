@@ -13,24 +13,36 @@ import ASL                  // Swift Package Manager (SPM); in Xcode, the use th
 #endif                      // bridging header to import the ASL API
 
 /**
-Extends the `asl_object_t` type by adding type-safe subscripting for message
-key values.
-*/
+ Extends the `asl_object_t` type by adding type-safe subscripting for message
+ key values.
+ */
 public extension asl_object_t
 {
     /**
-    Allows ASL object attributes to be retrieved and set via the subscripting
-    notation.
+     Allows ASL object attributes to be retrieved and set via the subscripting
+     notation.
 
-    - parameter key: The attribute key.
+     - parameter key: The attribute key.
+
+     - returns: The value associated with `key`, or `nil` if there isn't one.
+     */
+    public subscript(key: ASLAttributeKey) -> String? {
+        get { return self[key.rawValue] }
+        set { self[key.rawValue] = newValue }
+    }
     
-    - returns:  The value associated with `key`, or `nil` if there isn't one.
-    */
-    public subscript(key: ASLAttributeKey)
-        -> String?
-    {
+    /**
+     Allows ASL object attributes to be retrieved and set via the subscripting
+     notation.
+
+     - parameter attributeName: The name of the attribute.
+
+     - returns: The value associated with `attributeName`, or `nil` if there 
+     isn't one.
+     */
+    public subscript(attributeName: String) -> String? {
         get {
-            guard let value = asl_get(self, key.rawValue) else {
+            guard let value = asl_get(self, attributeName) else {
                 return nil
             }
             return String(cString: value)
@@ -38,21 +50,21 @@ public extension asl_object_t
 
         set {
             if let value = newValue {
-                asl_set(self, key.rawValue.cString(using: String.Encoding.utf8)!, value)
+                asl_set(self, attributeName, value)
             } else {
-                asl_unset(self, key.rawValue.cString(using: String.Encoding.utf8)!)
+                asl_unset(self, attributeName)
             }
         }
     }
-
-    /**
-    Allows the keys of the attributes contained in an ASL message to retrieved 
-    using the attribute's index.
-
-    - parameter index: The (zero-based) attribute index.
     
-    - returns:  The key associated with the attribute at `index`, or `nil` if
-                `index` is greater than the number of attributes.
+    /**
+     Allows the keys of the attributes contained in an ASL message to retrieved
+     using the attribute's index.
+
+     - parameter index: The (zero-based) attribute index.
+
+     - returns: The key associated with the attribute at `index`, or `nil` if
+     `index` is greater than the number of attributes.
     */
     public subscript(index: UInt32)
         -> String?
@@ -64,10 +76,10 @@ public extension asl_object_t
     }
 
     /**
-    Counts the number of ASL object attributes contained by the receiver.
-    
-    - returns:  The number of attributes.
-    */
+     Counts the number of ASL object attributes contained by the receiver.
+
+     - returns: The number of attributes.
+     */
     public func countAttributes()
         -> UInt32
     {
@@ -76,23 +88,23 @@ public extension asl_object_t
 }
 
 /**
-Instances of the `ASLObject` class provide type-safe to an underlying
-`asl_object_t` of a given `ASL_TYPE`.
+ Instances of the `ASLObject` class provide type-safe to an underlying
+ `asl_object_t` of a given `ASL_TYPE`.
 
-Typically, you would interact one of the `ASLObject` subclasses: 
-`ASLMessageObject` or `ASLQueryObject`. However, you can also use low-level
-ASL functionality using the `asl_object_t` exposed by the `aslObject`
-property.
+ Typically, you would interact one of the `ASLObject` subclasses:
+ `ASLMessageObject` or `ASLQueryObject`. However, you can also use low-level
+ ASL functionality using the `asl_object_t` exposed by the `aslObject`
+ property.
 
-**Note:** `ASLObject` subclass implementations are only provided for
-`ASL_TYPE_MSG` (the `ASLMessageObject` class) and `ASL_TYPE_QUERY` 
-(the `ASLQueryObject` class).
-*/
+ **Note:** `ASLObject` subclass implementations are only provided for
+ `ASL_TYPE_MSG` (the `ASLMessageObject` class) and `ASL_TYPE_QUERY`
+ (the `ASLQueryObject` class).
+ */
 public class ASLObject
 {
     /**
-    Represents the various `ASL_TYPE` values.
-    */
+     Represents the various `ASL_TYPE` values.
+     */
     public enum ASLType: UInt32
     {
         /** Equivalent to `ASL_TYPE_UNDEF`. */
@@ -132,9 +144,9 @@ public class ASLObject
     /** Indicates the `ASLType` represented by the receiver. */
     public let type: ASLType
 
-    /** Returns the underlying `asl_object_t` represented by the receiver. 
-    You can use this for direct, low-level access to the Apple System Log
-    API. */
+    /** Returns the underlying `asl_object_t` represented by the receiver.
+     You can use this for direct, low-level access to the Apple System Log
+     API. */
     public var aslObject: asl_object_t {
         return _aslObject
     }
@@ -142,9 +154,10 @@ public class ASLObject
     private var _aslObject: asl_object_t
 
     /**
-    Initializes a new `ASLObject` instance to represent the given `ASLType`.
-    
-    - parameter type: The `ASLType` that determines the
+     Initializes a new `ASLObject` instance to represent the given `ASLType`.
+
+     - parameter type: The `ASLType` that determines the type of `ASLObject`
+     being instantiated.
     */
     internal init(type: ASLType)
     {
@@ -157,41 +170,50 @@ public class ASLObject
     }
 
     /**
-    Allows ASL object attributes to be retrieved and set via the subscripting
-    notation.
-    
-    - parameter key: The attribute key.
-    
-    - returns:  The value associated with `key`, or `nil` if there isn't one.
-    */
-    public subscript(key: ASLAttributeKey)
-        -> String?
-    {
-        get { return _aslObject[key] }
+     Allows ASL object attributes to be retrieved and set via the subscripting
+     notation.
 
+     - parameter key: The attribute key.
+
+     - returns:  The value associated with `key`, or `nil` if there isn't one.
+     */
+    public subscript(key: ASLAttributeKey) -> String? {
+        get { return _aslObject[key] }
         set { _aslObject[key] = newValue }
     }
 
     /**
-    Allows the keys of ASL object attributes to retrieved using the attribute's
-    index.
+     Allows ASL object attributes to be retrieved and set via the subscripting
+     notation.
 
-    - parameter index: The (zero-based) attribute index.
-    
-    - returns:  The key associated with the attribute at `index`, or `nil` if
-                `index` is greater than the number of attributes.
-    */
-    public subscript(index: UInt32)
-        -> String?
-    {
+     - parameter attributeName: The name of the attribute.
+
+     - returns: The value associated with `attributeName`, or `nil` if there
+     isn't one.
+     */
+    public subscript(attributeName: String) -> String? {
+        get { return _aslObject[attributeName] }
+        set { _aslObject[attributeName] = newValue }
+    }
+
+    /**
+     Allows the keys of ASL object attributes to retrieved using the attribute's
+     index.
+
+     - parameter index: The (zero-based) attribute index.
+
+     - returns:  The key associated with the attribute at `index`, or `nil` if
+     `index` is greater than the number of attributes.
+     */
+    public subscript(index: UInt32) -> String? {
         return _aslObject[index]
     }
 
     /**
-    Counts the number of ASL object attributes contained by the receiver.
-    
-    - returns:  The number of attributes.
-    */
+     Counts the number of ASL object attributes contained by the receiver.
+
+     - returns:  The number of attributes.
+     */
     public func countAttributes()
         -> UInt32
     {
@@ -200,29 +222,29 @@ public class ASLObject
 }
 
 /**
-Represents an ASL message object.
+ Represents an ASL message object.
 
-Message objects represent an `asl_object_t` having a type of `ASL_TYPE_MSG`.
-*/
+ Message objects represent an `asl_object_t` having a type of `ASL_TYPE_MSG`.
+ */
 public class ASLMessageObject: ASLObject
 {
     /**
-    Initializes an empty `ASLMessageObject`.
-    */
+     Initializes an empty `ASLMessageObject`.
+     */
     public init()
     {
         super.init(type: .message)
     }
 
     /**
-    Initializes an `ASLMessageObject` having the specified priority level
-    and message.
-    
-    - parameter priorityLevel: The `ASLPriorityLevel` to use for the message
-                being constructed.
-    
-    - parameter message: The content of the message itself.
-    */
+     Initializes an `ASLMessageObject` having the specified priority level
+     and message.
+
+     - parameter priorityLevel: The `ASLPriorityLevel` to use for the message
+     being constructed.
+
+     - parameter message: The content of the message itself.
+     */
     public init(priorityLevel: ASLPriorityLevel, message: String)
     {
         super.init(type: .message)
@@ -232,133 +254,133 @@ public class ASLMessageObject: ASLObject
 }
 
 /**
-Represents an ASL query object.
+ Represents an ASL query object.
 
-Message objects represent an `asl_object_t` having a type of `ASL_TYPE_QUERY`.
-*/
+ Query objects represent an `asl_object_t` having a type of `ASL_TYPE_QUERY`.
+ */
 public class ASLQueryObject: ASLObject
 {
     /**
-    Represents an ASL query operation. Query operations are used for comparing
-    values when searches are being performed.
-    */
+     Represents an ASL query operation. Query operations are used for comparing
+     values when searches are being performed.
+     */
     public enum Operation: UInt32
     {
         /** Specifies that the query should match records whose value for the
-        given key is equal to the one provided. Equivalent to 
-        `ASL_QUERY_OP_EQUAL`. */
+         given key is equal to the one provided. Equivalent to
+         `ASL_QUERY_OP_EQUAL`. */
         case equalTo                = 0x0001
 
         /** Specifies that the query should match records whose value for the
-        given key is greater than the one provided. Equivalent to
-        `ASL_QUERY_OP_GREATER`. */
+         given key is greater than the one provided. Equivalent to
+         `ASL_QUERY_OP_GREATER`. */
         case greaterThan            = 0x0002
 
         /** Specifies that the query should match records whose value for the
-        given key is greater than or equal to the one provided. Equivalent to
-        `ASL_QUERY_OP_GREATER_EQUAL`. */
+         given key is greater than or equal to the one provided. Equivalent to
+         `ASL_QUERY_OP_GREATER_EQUAL`. */
         case greaterThanOrEqualTo   = 0x0003
 
         /** Specifies that the query should match records whose value for the
-        given key is less than the one provided. Equivalent to
-        `ASL_QUERY_OP_LESS`. */
+         given key is less than the one provided. Equivalent to
+         `ASL_QUERY_OP_LESS`. */
         case lessThan               = 0x0004
 
         /** Specifies that the query should match records whose value for the
-        given key is less than or equal to the one provided. Equivalent to
-        `ASL_QUERY_OP_LESS_EQUAL`. */
+         given key is less than or equal to the one provided. Equivalent to
+         `ASL_QUERY_OP_LESS_EQUAL`. */
         case lessThanOrEqualTo      = 0x0005
 
         /** Specifies that the query should match records whose value for the
-        given key is not equal to the one provided. Equivalent to
-        `ASL_QUERY_OP_NOT_EQUAL`. */
+         given key is not equal to the one provided. Equivalent to
+         `ASL_QUERY_OP_NOT_EQUAL`. */
         case notEqual               = 0x0006
 
         /** Specifies that the query should match records having values for the
-        given key. Equivalent to `ASL_QUERY_OP_TRUE`. */
+         given key. Equivalent to `ASL_QUERY_OP_TRUE`. */
         case keyExists              = 0x0007
     }
 
     /**
-    Represents modifiers used to change the behavior of a query operation.
-    These are bit-flag values that can be combined and otherwise manipulated 
-    with bitwise operators.
-    */
+     Represents modifiers used to change the behavior of a query operation.
+     These are bit-flag values that can be combined and otherwise manipulated
+     with bitwise operators.
+     */
     public struct OperationModifiers: OptionSet
     {
         /** The raw `UInt32` value representing the receiver's bit flags. */
         public let rawValue: UInt32
 
         /**
-        Initializes a new `ASLQueryObject.OperationModifiers` value with the
-        specified raw value.
+         Initializes a new `ASLQueryObject.OperationModifiers` value with the
+         specified raw value.
 
-        - parameter rawValue: A `UInt32` value containing the raw bit flag
-                    values to use.
-        */
+         - parameter rawValue: A `UInt32` value containing the raw bit flag
+         values to use.
+         */
         public init(rawValue: UInt32) { self.rawValue = rawValue }
 
         /** An `ASLQueryObject.OperationModifiers` value wherein none of the
-        bit flags are set. */
+         bit flags are set. */
         public static let none = OperationModifiers(rawValue: 0)
 
         /** Specifies that the query operation should perform case-insensitive
-        matching. Equivalent to `ASL_QUERY_OP_CASEFOLD`. */
+         matching. Equivalent to `ASL_QUERY_OP_CASEFOLD`. */
         public static let caseInsensitive = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_CASEFOLD))
 
         /** Specifies that the query operation will attempt to match the search
-        value against the beginning of each record's value for the given key.
-        Equivalent to `ASL_QUERY_OP_PREFIX`. */
+         value against the beginning of each record's value for the given key.
+         Equivalent to `ASL_QUERY_OP_PREFIX`. */
         public static let matchPrefix = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_PREFIX))
 
         /** Specifies that the query operation will attempt to match the search
-        value against the end of each record's value for the given key. 
-        Equivalent to `ASL_QUERY_OP_SUFFIX`. */
+         value against the end of each record's value for the given key.
+         Equivalent to `ASL_QUERY_OP_SUFFIX`. */
         public static let matchSuffix = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_SUFFIX))
 
         /** Specifies that the query operation will attempt to find the search
-        value within each record's value for the given key. Equivalent to
-        `ASL_QUERY_OP_SUBSTRING`. */
+         value within each record's value for the given key. Equivalent to
+         `ASL_QUERY_OP_SUBSTRING`. */
         public static let matchSubstring = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_SUBSTRING))
 
         /** Specifies that the query operation will perform numeric instead of
-        text comparison. The query operation will interpret the search value
-        and each record value as integers before performing the comparison
-        operation. Equivalent to `ASL_QUERY_OP_NUMERIC`. */
+         text comparison. The query operation will interpret the search value
+         and each record value as integers before performing the comparison
+         operation. Equivalent to `ASL_QUERY_OP_NUMERIC`. */
         public static let matchNumeric = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_NUMERIC))
 
         /** Specifies that the query operation will perform regular expression
-        matching. The query operation will interpret the search value as a
-        regular expression that will be applied against the each record's
-        value for the given key. Equivalent to `ASL_QUERY_OP_REGEX`. */
+         matching. The query operation will interpret the search value as a
+         regular expression that will be applied against the each record's
+         value for the given key. Equivalent to `ASL_QUERY_OP_REGEX`. */
         public static let matchRegex = OperationModifiers(rawValue: UInt32(ASL_QUERY_OP_REGEX))
     }
 
     /**
-    The function signature implemented by ASL search query result handlers.
+     The function signature implemented by ASL search query result handlers.
 
-    When an `ASLClient`'s `search()` function is called, this callback is
-    provided as a parameter.
+     When an `ASLClient`'s `search()` function is called, this callback is
+     provided as a parameter.
 
-    For each record in the query's result set, the callback function is
-    executed once and passed a `ResultRecord` value. After all results
-    have been reported, the callback is executed one final time, with `nil`
-    passed instead of an actual record.
+     For each record in the query's result set, the callback function is
+     executed once and passed a `ResultRecord` value. After all results
+     have been reported, the callback is executed one final time, with `nil`
+     passed instead of an actual record.
 
-    The callback implementation should return `true` as long as additional
-    `ResultRecord`s are desired.
-    
-    The callback can short-circuit delivery of additional results by returning
-    `false` at any time. Once the callback returns `false`, it will not be 
-    called again for the givens query.
-    */
+     The callback implementation should return `true` as long as additional
+     `ResultRecord`s are desired.
+
+     The callback can short-circuit delivery of additional results by returning
+     `false` at any time. Once the callback returns `false`, it will not be
+     called again for the givens query.
+     */
     public typealias ResultCallback = (ResultRecord?) -> Bool
 
     /**
-    A query result record. For each log message matched by an ASL search
-    query, a `ResultRecord` representing that message is passed to the
-    `ResultCallback` responsible for handling the query results.
-    */
+     A query result record. For each log message matched by an ASL search
+     query, a `ResultRecord` representing that message is passed to the
+     `ResultCallback` responsible for handling the query results.
+     */
     public struct ResultRecord
     {
         /** The `ASLClient` that executed the search query. */
@@ -378,29 +400,29 @@ public class ASLQueryObject: ASLObject
     }
 
     /**
-    Initializes an empty `ASLQueryObject`.
-    */
+     Initializes an empty `ASLQueryObject`.
+     */
     public init()
     {
         super.init(type: .query)
     }
 
     /**
-    Sets a query operation for the given key and string-based value.
+     Sets a query operation for the given key and string-based value.
 
-    When a search query is executed, the result set will be constrained
-    according to the query key(s) that have been set on the receiver.
-    
-    - parameter key: An `ASLAttributeKey` specifying the key whose value will
-                be queried.
-    
-    - parameter value: The string value to find.
-    
-    - parameter operation: Specifies the query `Operation` to be performed. This
-                governs how values will be matched by the search.
-    
-    - parameter modifiers: The `OperationModifiers` bit flags that modify the
-                behavior of the search operation.
+     When a search query is executed, the result set will be constrained
+     according to the query key(s) that have been set on the receiver.
+
+     - parameter key: An `ASLAttributeKey` specifying the key whose value will
+     be queried.
+
+     - parameter value: The string value to find.
+
+     - parameter operation: Specifies the query `Operation` to be performed.
+     This governs how values will be matched by the search.
+
+     - parameter modifiers: The `OperationModifiers` bit flags that modify the
+     behavior of the search operation.
     */
     public func setQueryKey(_ key: ASLAttributeKey, value: String?, operation: Operation, modifiers: OperationModifiers)
     {
@@ -409,23 +431,22 @@ public class ASLQueryObject: ASLObject
     }
 
     /**
-    Sets a query operation for the given key and string-based value.
+     Sets a query operation for the given key and string-based value.
 
-    When a search query is executed, the result set will be constrained
-    according to the query key(s) that have been set on the receiver.
-    
-    - parameter key: An `ASLAttributeKey` specifying the key whose value will
-                be queried.
-    
-    - parameter value: The integer value to find.
-    
-    - parameter operation: Specifies the query `Operation` to be performed. This
-                governs how values will be matched by the search.
-    
-    - parameter modifiers: The `OperationModifiers` bit flags that modify the
-                behavior of the search operation. Note that using this method
-                variant automatically causes the `.MatchNumeric` bit flag to
-                be set.
+     When a search query is executed, the result set will be constrained
+     according to the query key(s) that have been set on the receiver.
+
+     - parameter key: An `ASLAttributeKey` specifying the key whose value will
+     be queried.
+
+     - parameter value: The integer value to find.
+
+     - parameter operation: Specifies the query `Operation` to be performed.
+     This governs how values will be matched by the search.
+
+     - parameter modifiers: The `OperationModifiers` bit flags that modify the
+     behavior of the search operation. Note that using this method variant
+     automatically causes the `.MatchNumeric` bit flag to be set.
     */
     public func setQueryKey(_ key: ASLAttributeKey, value: Int, operation: Operation, modifiers: OperationModifiers)
     {
