@@ -235,7 +235,20 @@ public final class ASLClient
                                 priority = level
                             }
 
-                            let record = ASLQueryObject.ResultRecord(client: self, query: query, priority: priority, message: message, timestamp: logEntryTime)
+                            var attr = [String: String]()
+                            var i = UInt32(0)
+                            var key = asl_key(record, i)
+                            while key != nil {
+                                if let keyStr = String.fromCString(key) {
+                                    if let val = record[keyStr] {
+                                        attr[keyStr] = val
+                                    }
+                                }
+                                i += 1
+                                key = asl_key(record, i)
+                            }
+
+                            let record = ASLQueryObject.ResultRecord(client: self, query: query, priority: priority, message: message, timestamp: logEntryTime, attributes: attr)
                             keepGoing = callback(record)
                         }
                     }

@@ -397,6 +397,9 @@ public final class ASLQueryObject: ASLObject
 
         /** The system time when the log message was recorded. */
         public let timestamp: NSDate
+
+        /** Raw message attributes. */
+        public let attributes: [String: String]
     }
 
     /**
