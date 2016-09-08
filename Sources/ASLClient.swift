@@ -251,7 +251,7 @@ public class ASLClient
      - parameter callback: The callback function to be invoked for each log
      entry. Make no assumptions about which thread will be calling the function.
     */
-    public func search(_ query: ASLQueryObject, callback: ASLQueryObject.ResultCallback)
+    public func search(_ query: ASLQueryObject, callback: @escaping ASLQueryObject.ResultCallback)
     {
         let dispatch = dispatcher()
         dispatch {
