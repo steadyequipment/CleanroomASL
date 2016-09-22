@@ -22,18 +22,11 @@ script:
 - set -o pipefail && xcodebuild -project CleanroomASL.xcodeproj -configuration Release ONLY_ACTIVE_ARCH=YES -scheme CleanroomASL-watchOS -destination 'platform=watchOS Simulator,OS=3.0,name=Apple Watch - 42mm' -destination-timeout 300 clean build | tee "CleanroomASL-watchOS-build.log" | xcpretty
 
 after_failure:
-- echo "Travis test result is $TRAVIS_TEST_RESULT"
-- printf "\niOS build log:\n"
-- cat "CleanroomASL-iOS-build.log"
-- printf "\niOS test log:\n"
-- cat "CleanroomASL-iOS-test.log"
-- printf "\nmacOS build log:\n"
-- cat "CleanroomASL-macOS-build.log"
-- printf "\nmacOS test log:\n"
-- cat "CleanroomASL-macOS-test.log"
-- printf "\ntvOS build log:\n"
-- cat "CleanroomASL-tvOS-build.log"
-- printf "\ntvOS test log:\n"
-- cat "CleanroomASL-tvOS-test.log"
-- printf "\nwatchOS build log:\n"
-- cat "CleanroomASL-watchOS-build.log"
+- [ -f "CleanroomASL-iOS-build.log" ] && cat "CleanroomASL-iOS-build.log"
+- [ -f "CleanroomASL-iOS-test.log" ] && cat "CleanroomASL-iOS-test.log"
+- [ -f "CleanroomASL-macOS-build.log" ] && cat "CleanroomASL-macOS-build.log"
+- [ -f "CleanroomASL-macOS-test.log" ] && cat "CleanroomASL-macOS-test.log"
+- [ -f "CleanroomASL-tvOS-build.log" ] && cat "CleanroomASL-tvOS-build.log"
+- [ -f "CleanroomASL-tvOS-test.log" ] && cat "CleanroomASL-tvOS-test.log"
+- [ -f "CleanroomASL-watchOS-build.log" ] && cat "CleanroomASL-watchOS-build.log"
+
