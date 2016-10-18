@@ -15,8 +15,8 @@ install:
 script:
   - ./BuildControl/bin/travisBuildHelper.sh build iOS
   - ./BuildControl/bin/travisBuildHelper.sh test iOS
-  - ./BuildControl/bin/travisBuildHelper.sh build macOS
-  - ./BuildControl/bin/travisBuildHelper.sh test macOS
+  - ./BuildControl/bin/travisBuildHelper.sh build OSX
+  - ./BuildControl/bin/travisBuildHelper.sh test OSX
   - ./BuildControl/bin/travisBuildHelper.sh build tvOS
   - ./BuildControl/bin/travisBuildHelper.sh test tvOS
   - ./BuildControl/bin/travisBuildHelper.sh build watchOS
@@ -25,9 +25,9 @@ after_failure:
   - test -f "CleanroomASL-iOS-build.log" && tail -n 2500 "CleanroomASL-iOS-build.log"
   - test -f "CleanroomASL-iOS-test.log" && tail -n 2500 "CleanroomASL-iOS-test.log"
   - test -f "CleanroomASL-iOS-test.log" && LINE_BEFORE=`cat "CleanroomASL-iOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "CleanroomASL-iOS-test.log" | tail -n 1` && cat "$LOG_FILE"
-  - test -f "CleanroomASL-macOS-build.log" && tail -n 2500 "CleanroomASL-macOS-build.log"
-  - test -f "CleanroomASL-macOS-test.log" && tail -n 2500 "CleanroomASL-macOS-test.log"
-  - test -f "CleanroomASL-macOS-test.log" && LINE_BEFORE=`cat "CleanroomASL-macOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "CleanroomASL-macOS-test.log" | tail -n 1` && cat "$LOG_FILE"
+  - test -f "CleanroomASL-OSX-build.log" && tail -n 2500 "CleanroomASL-OSX-build.log"
+  - test -f "CleanroomASL-OSX-test.log" && tail -n 2500 "CleanroomASL-OSX-test.log"
+  - test -f "CleanroomASL-OSX-test.log" && LINE_BEFORE=`cat "CleanroomASL-OSX-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "CleanroomASL-OSX-test.log" | tail -n 1` && cat "$LOG_FILE"
   - test -f "CleanroomASL-tvOS-build.log" && tail -n 2500 "CleanroomASL-tvOS-build.log"
   - test -f "CleanroomASL-tvOS-test.log" && tail -n 2500 "CleanroomASL-tvOS-test.log"
   - test -f "CleanroomASL-tvOS-test.log" && LINE_BEFORE=`cat "CleanroomASL-tvOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "CleanroomASL-tvOS-test.log" | tail -n 1` && cat "$LOG_FILE"
